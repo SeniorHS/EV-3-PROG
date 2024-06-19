@@ -37,8 +37,33 @@ const verificar = (id) => {
                 div.innerHTML = '<span class="badge bg-danger">El email no tiene el formato correcto</span>'
             }
         }
+
+        if (id == 'edadfloat') {
+            if (input.value < 1) {
+                input.classList.add('is-invalid')
+                div.innerHTML = '<span class="badge bg-danger">La edad no puede ser un numero negativo</span>'
+            }
+
+            if (input.value > 115) {
+                input.classList.add('is-invalid')
+                div.innerHTML = '<span class="badge bg-danger">La edad no puede ser superior a 115 años</span>'
+            }
+        }
+        if (id == 'pesofloat') {
+            if (input.value < 1) {
+                input.classList.add('is-invalid')
+                div.innerHTML = '<span class="badge bg-danger">El peso no puede ser un numero negativo</span>'
+            }
+        }
+        if (id == 'estaturafloat') {
+            if (input.value < 1) {
+                input.classList.add('is-invalid')
+                div.innerHTML = '<span class="badge bg-danger">La no puede ser un numero negativo</span>'
+            }
+        }
     }
 }
+
 
 const soloNumeros = (p) => {
     if (p.keyCode >= 48 && p.keyCode <= 57)
@@ -54,3 +79,6 @@ const validarEmail = (emailfloat) => {
         return false //si retorna falso no es válido
     return true
 }
+
+
+
