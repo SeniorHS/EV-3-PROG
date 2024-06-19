@@ -80,5 +80,3 @@ const validarEmail = (emailfloat) => {
     return true
 }
 
-
-

@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
-import { addDoc, collection, deleteDoc, doc, getDoc, getFirestore, onSnapshot, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+import { addDoc, collection, deleteDoc, doc, getDoc, getFirestore, onSnapshot, updateDoc, where, query, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
 // TODO: Documentación
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -48,4 +48,10 @@ export const getDocumento = (id) => getDoc(doc(db, 'Paciente', id))
 export const update = (id, per) => {
     //updateDoc es una funcioón de firestore que permite modificar un documento
     updateDoc(doc(db, 'Paciente', id), per)
+}
+
+export const NoRepeatRun = async (run) => {
+    const p = query(collection(db, 'Paciente'), where('runfloat', '==', run));
+    const querySnapshot = await getDocs(p);
+    return !querySnapshot.empty;
 }

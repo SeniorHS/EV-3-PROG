@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const pesoInput = document.getElementById('pesofloat');
     const estaturaInput = document.getElementById('estaturafloat');
-    const imcInput = document.getElementById('imcfloat');
+    // const imcInput = document.getElementById('imcfloat');
 
     function calcularIMC() {
         const peso = parseFloat(pesoInput.value);
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!isNaN(peso) && !isNaN(estatura) && estatura > 0) {
             const imc = peso / (estatura * estatura);
-            imcInput.value = imc.toFixed(2);
+        //     imcInput.value = imc.toFixed(2);
         }
     }
 

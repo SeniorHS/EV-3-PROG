@@ -1,11 +1,11 @@
 // Se importa la función para guardar los datos
-import { getData, getDocumento, remove, save, update } from './firestore.js'
+import { getData, getDocumento, remove, save, update, NoRepeatRun } from './firestore.js'
 
 // ID para guardar el ID del documento 
 let id = 0
 
 // Event listener para el botón Guardar
-document.getElementById('btnGuardar').addEventListener('click', (event) => {
+document.getElementById('btnGuardar').addEventListener('click', async (event) => {
     event.preventDefault()
 
     // Validamos que los campos no sean vacíos
@@ -34,13 +34,22 @@ document.getElementById('btnGuardar').addEventListener('click', (event) => {
                 imc: imc,
                 estado: estadoIMC
             }
+            const run = document.getElementById('runfloat').value.trim()
+
 
             if (id == 0) {
-                // Función que permite el guardado de datos
-                save(nutri)
-                Swal.fire('Guardado', '', 'success')
+                console.log(run)
+                const a = await NoRepeatRun(run)
+                console.log(a)
+                if (!await NoRepeatRun(run)) {
+                    Swal.fire('Run ya esta registrado')
+                    document.getElementById('runfloat').classList.add('is-invalid')
+                }
+                else {
+                    save(nutri)
+                    Swal.fire('Guardado', '', 'success')
+                }
             } else {
-                // Permite editar los datos si el id es diferente de 0
                 update(id, nutri)
                 Swal.fire('Actualizado', '', 'success')
             }
